@@ -93,206 +93,25 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
 /**
+ * Return the input text and change cell background color.
  * @customfunction
- * @param {string} address The address of the cell from which to retrieve the value.
- * @returns The value of the cell at the input address.
- **/
-function getRangeValue(_x) {
-  return _getRangeValue.apply(this, arguments);
-}
-/**
- * Returns the input text and change the background color of the cell.
- * @customfunction
- * @param {string} text Input text
- * @param {string} cellBackgroundColor Cell background color to be applied
- * @param {CustomFunctions.Invocation} invocation invocations 
- * @returns The input text.
- */
-
-
-function _getRangeValue() {
-  _getRangeValue = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(address) {
-    var context, selectedRange, range;
-    return regeneratorRuntime.wrap(function _callee$(_context) {
-      while (1) {
-        switch (_context.prev = _context.next) {
-          case 0:
-            // Retrieve the context object. 
-            context = new Excel.RequestContext();
-            selectedRange = context.workbook.getSelectedRange();
-            selectedRange.format.fill.color = "red"; // Use the context object to access the cell at the input address. 
-
-            range = context.workbook.worksheets.getActiveWorksheet().getRange(address);
-            range.load();
-            _context.next = 7;
-            return context.sync();
-
-          case 7:
-            return _context.abrupt("return", range.values[0][0]);
-
-          case 8:
-          case "end":
-            return _context.stop();
-        }
-      }
-    }, _callee);
-  }));
-  return _getRangeValue.apply(this, arguments);
-}
-
-function stringCellFormatter(_x2, _x3, _x4) {
-  return _stringCellFormatter.apply(this, arguments);
-}
-/**
- * Change color of cell
- * @customfunction
- * @param {string} text Input text
- * @param {string} color Cell color 
- * @returns The input text.
- */
-
-
-function _stringCellFormatter() {
-  _stringCellFormatter = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(text, cellBackgroundColor, invocation) {
-    var context, selectedRange;
-    return regeneratorRuntime.wrap(function _callee2$(_context2) {
-      while (1) {
-        switch (_context2.prev = _context2.next) {
-          case 0:
-            context = new Excel.RequestContext();
-            selectedRange = context.workbook.getSelectedRange();
-            selectedRange.load('address');
-            selectedRange.format.fill.color = cellBackgroundColor;
-            _context2.next = 6;
-            return context.sync();
-
-          case 6:
-            return _context2.abrupt("return", invocation.address);
-
-          case 7:
-          case "end":
-            return _context2.stop();
-        }
-      }
-    }, _callee2);
-  }));
-  return _stringCellFormatter.apply(this, arguments);
-}
-
-function stringCellFormatterWithoutAsync(text, color) {
-  var context = new Excel.RequestContext();
-  var selectedRange = context.workbook.getSelectedRange();
-  selectedRange.format.fill.color = color;
-  var g = getGlobal();
-  g.action = action();
-  return text;
-}
-/**
- * Returns the input text and change the background color of the cell.
- * @customfunction
- * @param {string} text Input text
- * @param {string} cellBackgroundColor Cell background color to be applied 
- * @returns The input text.
- */
-
-
-function stringCellFormatter2(_x5, _x6) {
-  return _stringCellFormatter2.apply(this, arguments);
-}
-/**
- * Returns the input text and change the font type, font size, font color
- * @customfunction
- * @param {string} text Input text
- * @param {string} fontName font name
- * @param {string} fontSize font size
- * @param {string} fontColor font color
- * @returns Input text
- */
-
-
-function _stringCellFormatter2() {
-  _stringCellFormatter2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(text, cellBackgroundColor) {
-    return regeneratorRuntime.wrap(function _callee3$(_context3) {
-      while (1) {
-        switch (_context3.prev = _context3.next) {
-          case 0:
-            Excel.run(function (context) {
-              var range = context.workbook.getSelectedRange();
-              range.format.fill.color = cellBackgroundColor;
-              return context.sync();
-            })["catch"](function (error) {
-              console.log("Error: " + error);
-
-              if (error instanceof OfficeExtension.Error) {
-                console.log("Debug info: " + JSON.stringify(error.debugInfo));
-              }
-            });
-            return _context3.abrupt("return", text);
-
-          case 2:
-          case "end":
-            return _context3.stop();
-        }
-      }
-    }, _callee3);
-  }));
-  return _stringCellFormatter2.apply(this, arguments);
-}
-
-function stringFontFormatter(_x7, _x8, _x9, _x10) {
-  return _stringFontFormatter.apply(this, arguments);
-}
-/**
- * Return the address of the cell that invoked the custom function. 
- * @customfunction
- * @param {number} first First parameter.
- * @param {number} second Second parameter.
- * @param {CustomFunctions.Invocation} invocation Invocation object. 
+ * @param {string} text Input text.
+ * @param {string} cellBackgroundColor Cell background color.
+ * @param {CustomFunctions.Invocation} invocation Invocation object to get current cell. 
  * @requiresAddress 
+ * @returns Input text.
  */
+function stringCellFormatter(text, cellBackgroundColor, invocation) {
+  var address = invocation.address; //get address of the invocation / current cell, eg: Sheet1!A4
 
+  var addressWithoutSheet = address.split('!')[1]; //split to get address without sheet
 
-function _stringFontFormatter() {
-  _stringFontFormatter = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(text, fontName, fontSize, fontColor) {
-    var context, selectedRange;
-    return regeneratorRuntime.wrap(function _callee4$(_context4) {
-      while (1) {
-        switch (_context4.prev = _context4.next) {
-          case 0:
-            context = new Excel.RequestContext();
-            selectedRange = context.workbook.getSelectedRange();
-            selectedRange.format.font.name = 'Times New Roman';
-            selectedRange.format.font.color = 'red';
-            selectedRange.format.font.size = 30;
-            _context4.next = 7;
-            return context.sync();
-
-          case 7:
-            return _context4.abrupt("return", text);
-
-          case 8:
-          case "end":
-            return _context4.stop();
-        }
-      }
-    }, _callee4);
-  }));
-  return _stringFontFormatter.apply(this, arguments);
-}
-
-function getAddressAndFormat(first, second, invocation) {
-  var address = invocation.address;
-  var addressWithoutSheet = address.split('!')[1];
   Excel.run(function (context) {
     var sheet = context.workbook.worksheets.getActiveWorksheet();
     var range = sheet.getRange(addressWithoutSheet);
     range.select();
-    range.format.fill.color = "red";
+    range.format.fill.color = cellBackgroundColor;
     return context.sync();
   })["catch"](function (error) {
     console.log("Error: " + error);
@@ -301,29 +120,46 @@ function getAddressAndFormat(first, second, invocation) {
       console.log("Debug info: " + JSON.stringify(error.debugInfo));
     }
   });
-  return addressWithoutSheet;
+  return text;
 }
 /**
- * Return the address of the cell that invoked the custom function. 
+ * Return the input text and change the font type, font size, font color.
  * @customfunction
- * @param {number} first First parameter.
- * @param {number} second Second parameter.
- * @param {CustomFunctions.Invocation} invocation Invocation object. 
- * @requiresAddress 
+ * @param {string} text Input text.
+ * @param {string} fontName Font name.
+ * @param {number} fontSize Font size.
+ * @param {string} fontColor Font color.
+ * @param {CustomFunctions.Invocation} invocation Invocation object to get current cell.
+ * @requiresAddress
+ * @returns Input text.
  */
 
 
-function getAddress(first, second, invocation) {
-  var address = invocation.address;
-  return address;
+function stringFontFormatter(text, fontName, fontSize, fontColor, invocation) {
+  var address = invocation.address; //get address of the invocation / current cell, eg: Sheet1!A4
+
+  var addressWithoutSheet = address.split('!')[1]; //split to get address without sheet
+
+  Excel.run(function (context) {
+    var sheet = context.workbook.worksheets.getActiveWorksheet();
+    var range = sheet.getRange(addressWithoutSheet);
+    range.select();
+    range.format.font.name = fontName; //eg 'Times New Roman'
+
+    range.format.font.color = fontColor;
+    range.format.font.size = fontSize;
+    return context.sync();
+  })["catch"](function (error) {
+    console.log("Error: " + error);
+
+    if (error instanceof OfficeExtension.Error) {
+      console.log("Debug info: " + JSON.stringify(error.debugInfo));
+    }
+  });
+  return text;
 }
-CustomFunctions.associate("GETRANGEVALUE", getRangeValue);
 CustomFunctions.associate("STRINGCELLFORMATTER", stringCellFormatter);
-CustomFunctions.associate("STRINGCELLFORMATTERWITHOUTASYNC", stringCellFormatterWithoutAsync);
-CustomFunctions.associate("STRINGCELLFORMATTER2", stringCellFormatter2);
 CustomFunctions.associate("STRINGFONTFORMATTER", stringFontFormatter);
-CustomFunctions.associate("GETADDRESSANDFORMAT", getAddressAndFormat);
-CustomFunctions.associate("GETADDRESS", getAddress);
 
 /***/ })
 

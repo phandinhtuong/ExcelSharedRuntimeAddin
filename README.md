@@ -1,4 +1,9 @@
 # Custom functions in Excel
+By Tuong:
+Function StringCellFormatter(text, CellBackgroundColor) will return the input text and change the background color of the cell.
+Function StringFontFormatter(text, FontName, FontSize, FontColor) will return the input text and change font type, font size, font color (type #3456FC for RGB).
+
+
 
 Custom functions enable you to add new functions to Excel by defining those functions in JavaScript as part of an add-in. Users within Excel can access custom functions just as they would any native function in Excel, such as `SUM()`.  
 
