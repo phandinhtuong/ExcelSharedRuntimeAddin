@@ -1,0 +1,140 @@
+{
+    "functions": [
+        {
+            "id": "GETRANGEVALUE",
+            "name": "GETRANGEVALUE",
+            "parameters": [
+                {
+                    "description": "The address of the cell from which to retrieve the value.",
+                    "name": "address",
+                    "type": "string"
+                }
+            ],
+            "result": {}
+        },
+        {
+            "description": "Returns the input text and change the background color of the cell.",
+            "id": "STRINGCELLFORMATTER",
+            "name": "STRINGCELLFORMATTER",
+            "parameters": [
+                {
+                    "description": "Input text",
+                    "name": "text",
+                    "type": "string"
+                },
+                {
+                    "description": "Cell background color to be applied",
+                    "name": "cellBackgroundColor",
+                    "type": "string"
+                }
+            ],
+            "result": {}
+        },
+        {
+            "description": "Change color of cell",
+            "id": "STRINGCELLFORMATTERWITHOUTASYNC",
+            "name": "STRINGCELLFORMATTERWITHOUTASYNC",
+            "parameters": [
+                {
+                    "description": "Input text",
+                    "name": "text",
+                    "type": "string"
+                },
+                {
+                    "description": "Cell color",
+                    "name": "color",
+                    "type": "string"
+                }
+            ],
+            "result": {}
+        },
+        {
+            "description": "Returns the input text and change the background color of the cell.",
+            "id": "STRINGCELLFORMATTER2",
+            "name": "STRINGCELLFORMATTER2",
+            "parameters": [
+                {
+                    "description": "Input text",
+                    "name": "text",
+                    "type": "string"
+                },
+                {
+                    "description": "Cell background color to be applied",
+                    "name": "cellBackgroundColor",
+                    "type": "string"
+                }
+            ],
+            "result": {}
+        },
+        {
+            "description": "Returns the input text and change the font type, font size, font color",
+            "id": "STRINGFONTFORMATTER",
+            "name": "STRINGFONTFORMATTER",
+            "parameters": [
+                {
+                    "description": "Input text",
+                    "name": "text",
+                    "type": "string"
+                },
+                {
+                    "description": "font name",
+                    "name": "fontName",
+                    "type": "string"
+                },
+                {
+                    "description": "font size",
+                    "name": "fontSize",
+                    "type": "string"
+                },
+                {
+                    "description": "font color",
+                    "name": "fontColor",
+                    "type": "string"
+                }
+            ],
+            "result": {}
+        },
+        {
+            "description": "Return the address of the cell that invoked the custom function.",
+            "id": "GETADDRESSANDFORMAT",
+            "name": "GETADDRESSANDFORMAT",
+            "options": {
+                "requiresAddress": true
+            },
+            "parameters": [
+                {
+                    "description": "First parameter.",
+                    "name": "first",
+                    "type": "number"
+                },
+                {
+                    "description": "Second parameter.",
+                    "name": "second",
+                    "type": "number"
+                }
+            ],
+            "result": {}
+        },
+        {
+            "description": "Return the address of the cell that invoked the custom function.",
+            "id": "GETADDRESS",
+            "name": "GETADDRESS",
+            "options": {
+                "requiresAddress": true
+            },
+            "parameters": [
+                {
+                    "description": "First parameter.",
+                    "name": "first",
+                    "type": "number"
+                },
+                {
+                    "description": "Second parameter.",
+                    "name": "second",
+                    "type": "number"
+                }
+            ],
+            "result": {}
+        }
+    ]
+}
